@@ -26,37 +26,13 @@ options = {
 }
 
 
-#get today data  and format it dd de mmmm de aaaa
-data = datetime.today().strftime('%d/%m/%Y')
-# Split the date string into day, month, and year components
-day, month, year = data.split('/')
-# Define a mapping of month numbers to month names in Portuguese
-month_names = {
-    '01': 'janeiro',
-    '02': 'fevereiro',
-    '03': 'março',
-    '04': 'abril',
-    '05': 'maio',
-    '06': 'junho',
-    '07': 'julho',
-    '08': 'agosto',
-    '09': 'setembro',
-    '10': 'outubro',
-    '11': 'novembro',
-    '12': 'dezembro'
-}
-# Get the month name from the mapping
-month_name = month_names[month]
-
-# Format the date as "dd de mmmm de aaaa"
-formatted_date = f"{day} de {month_name} de {year}"
 
 # #read informe-model.html content with utf-8 encoding
 file = open('informe-model-from-image.html', 'r', encoding='utf-8')
 html_content_template = file.read()
 file.close()
 
-html_content_template = html_content_template.replace('{{DATA}}', formatted_date)
+html_content_template = html_content_template.replace('{{DATA}}', os.getenv('DATA_INFOME'))
 html_content_template = html_content_template.replace('{{CNPJ_FONTE_PAGADORA}}', os.getenv('CNPJ_FONTE_PAGADORA'))
 html_content_template = html_content_template.replace('{{NOME_FONTE_PAGADORA}}', os.getenv('NOME_FONTE_PAGADORA'))
 html_content_template = html_content_template.replace('{{NOME_RESPOSAVEL_INFORMACOES}}', os.getenv('NOME_RESPOSAVEL_INFORMACOES'))
