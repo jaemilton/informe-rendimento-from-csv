@@ -36,6 +36,8 @@ html_content_template = html_content_template.replace('{{DATA}}', os.getenv('DAT
 html_content_template = html_content_template.replace('{{CNPJ_FONTE_PAGADORA}}', os.getenv('CNPJ_FONTE_PAGADORA'))
 html_content_template = html_content_template.replace('{{NOME_FONTE_PAGADORA}}', os.getenv('NOME_FONTE_PAGADORA'))
 html_content_template = html_content_template.replace('{{NOME_RESPOSAVEL_INFORMACOES}}', os.getenv('NOME_RESPOSAVEL_INFORMACOES'))
+html_content_template = html_content_template.replace('{{ANO_EXERCICIO}}', os.getenv('ANO_EXERCICIO'))
+html_content_template = html_content_template.replace('{{ANO_CALENDARIO}}', os.getenv('ANO_CALENDARIO'))
 
 # read csv file with utf-8 encoding
 with open('dados.csv', 'r', encoding='utf-8') as csvfile:
