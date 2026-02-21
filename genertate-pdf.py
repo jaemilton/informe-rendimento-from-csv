@@ -20,8 +20,7 @@ config = pdfkit.configuration(wkhtmltopdf=PATH_WKHTMLTOPDF)
 # --- PDF generation options (explicitly set encoding) ---
 options = {
     'encoding': 'UTF-8',
-    'enable-local-file-access': True, # Needed for local CSS/images if using from_string or from_file
-    'allow': ['./brasao.png'] # Allow local file access
+    'enable-local-file-access': True # Needed for local CSS/images if using from_string or from_file
 }
 
 
