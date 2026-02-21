@@ -1,0 +1,52 @@
+0003/11175
+MINISTÉRIO DA FAZENDA Comprovante de Rendimentos Pagos e de Imposto
+SECRETARIA DA RECEITA FEDERAL DO BRASIL
+sobre a Renda Retido na Fonte.
+IMPOSTO SOBRE A RENDA DA PESSOA FÍSICA
+Ano-Calendário 2018
+Exercício de 2019
+Verifique as condições e o prazo para a apresentação da Declaração do Imposto sobre a Renda da Pessoa Física para este Ano-Calendário
+no sítio da Secretaria da Receita Federal do Brasil na Internet, no endereço <www.receita.fazenda.gov.br>.
+1-FONTE PAGADORA PESSOA JURÍDICA OU PESSOA FÍSICA
+CNPJ/CPF Nome Empresarial/Nome Completo
+36.770.857/0001-38 BRASFORT ADMINISTRACAO E SERVICOS LTDA
+2-PESSOA FÍSICA BENEFICIÁRIA DOS RENDIMENTOS
+CPF Nome Completo
+012.365.651-69 KELLEN CRISTINA INACIO DE LIMA
+Natureza do Rendimento
+Assalariado
+3-RENDIMENTOS TRIBUTÁVEIS, DEDUÇÕES E IMPOSTO RETIDO NA FONTE Valores em Reais
+01 - Total dos Rendimentos (inclusive Férias) 28.948,96
+02 - Contribuição Previdenciária Oficial 2.666,20
+03 - Contribuição a entidades de previdência complementar, pública ou privada, e a fundos de aposentadoria programada individual (FAPI) 0,00
+04 - Pensão Alimentícia 0,00
+05 - Imposto sobre a renda retido na fonte 257,62
+4-RENDIMENTOS ISENTOS E NÃO TRIBUTÁVEIS Valores em Reais
+01 - Parcela Isenta dos Proventos de Aposentadoria, Reserva Remunerada, Reforma e Pensão (65 anos ou mais) 0,00
+02 - Diárias e Ajudas de Custo 0,00
+03 - Pensão, Prov.de Aposentadoria ou Reforma por Moléstia Grave e aposentadoria ou Reforma por Acidente em Serviço 0,00
+04 - Lucro e Dividendo Apurado a partir de 1996 pago por PJ (Lucro Real, Presumido ou Arbitrado) 0,00
+05 - Vlr. Pago ao Titular ou Sócio da Microempresa ou Empr.de Pequeno Porte, exceto Pro-labore, aluguéis ou Serv.Prest. 0,00
+06 - Indenizações por Rescisão de Contrato de Trabalho, inclusive a título de PDV e por Acidente de Trabalho 0,00
+07 - Outros (Salário Família, Abono Pecuniário ou Outros) 70,59
+5-RENDIMENTOS SUJEITOS À TRIBUTAÇÃO EXCLUSIVA (RENDIMENTO LÍQUIDO) Valores em Reais
+01 - 13º(décimo terceiro) salário 2.123,40
+02 - Imposto sobre a renda retido na fonte sobre 13º(décimo terceiro) salário 17,79
+03 - Outros 0,00
+6-RENDIMENTOS RECEBIDOS ACUMULADAMENTE ART. 12-A DA LEI No. 7.713, DE 1988 (Sujeito à Tributação Exclusiva)
+6.1 - Número do Processo: Quantidade de meses 0
+Natureza do Rendimento: Valores em Reais
+01 - Total dos Rendimentos Tributáveis (inclusive Férias e Décimo Terceiro Salário) 0,00
+02 - Exclusão: Despesas com a Ação Judicial 0,00
+03 - Dedução: Contribuição Previdenciária Oficial 0,00
+04 - Dedução Pensão Alimentícia 0,00
+05 - Imposto sobre a Renda Retido na Fonte 0,00
+06 - Rendimentos Isentos de Pensão, Proventos de Aposentadoria ou Reforma por Moléstia Grave ou
+0,00
+Aposentadoria ou Reforma por Acidente em Serviço
+7-INFORMAÇÕES COMPLEMENTARES
+8-RESPONSÁVEL PELAS INFORMAÇÕES
+Nome Data Assinatura
+BRASFORT 29/01/2019
+Isento de Assinatura conf.instr.normat.RFB/1215/2011
+Aprovado pela Instrução Normativa RFB nº 1.682, de 28 de dezembro de 2016.

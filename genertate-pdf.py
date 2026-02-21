@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+import pdfkit
+import unidecode
+from datetime import datetime
 
 # #read informe-model.html content with utf-8 encoding
-file = open('informe-model.html', 'r', encoding='utf-8')
+file = open('informe-model-from-image.html', 'r', encoding='utf-8')
 html_content_template = file.read()
 file.close()
 
-import pdfkit
 
 # Define paths (adjust for your installation and file locations)
 PATH_WKHTMLTOPDF = r'.\\wkhtmltox\\bin\\wkhtmltopdf.exe' # Use a raw string for path
@@ -18,11 +20,12 @@ config = pdfkit.configuration(wkhtmltopdf=PATH_WKHTMLTOPDF)
 # --- PDF generation options (explicitly set encoding) ---
 options = {
     'encoding': 'UTF-8',
-    'enable-local-file-access': None # Needed for local CSS/images if using from_string or from_file
+    'enable-local-file-access': True, # Needed for local CSS/images if using from_string or from_file
+    'allow': ['./brasao.png'] # Allow local file access
 }
 
+
 #get today data  and format it dd de mmmm de aaaa
-from datetime import datetime
 data = datetime.today().strftime('%d/%m/%Y')
 # Split the date string into day, month, and year components
 day, month, year = data.split('/')
@@ -53,6 +56,11 @@ with open('dados.csv', 'r', encoding='utf-8') as csvfile:
     reader = csv.DictReader(csvfile, delimiter=';')
     for row in reader:
         nome = row['nome']
+        #get nome and format it as uppercase
+        nome = nome.upper()
+        #remove accents from nome
+        nome_without_accents = unidecode.unidecode(nome)
+        
         #get cpf and format it as 000.000.000-00
         cpf = row['cpf']
         formatted_cpf = f"{cpf[:3]}.{cpf[3:6]}.{cpf[6:9]}-{cpf[9:]}"
@@ -70,4 +78,4 @@ with open('dados.csv', 'r', encoding='utf-8') as csvfile:
 
         # Convert from an HTML file
         # pdfkit.from_file('index.html', 'output_file.pdf')
-        pdfkit.from_string(html_content, f'{cpf}.pdf', configuration=config, options=options)
+        pdfkit.from_string(html_content, f'{nome_without_accents}.pdf', configuration=config, options=options)
