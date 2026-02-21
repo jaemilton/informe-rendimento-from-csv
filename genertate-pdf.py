@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+import os
+
 import pdfkit
 import unidecode
 from datetime import datetime
 import csv
 from tqdm import tqdm
+from dotenv import load_dotenv
 
-# #read informe-model.html content with utf-8 encoding
-file = open('informe-model-from-image.html', 'r', encoding='utf-8')
-html_content_template = file.read()
-file.close()
-
+# Load .env file
+load_dotenv()
 
 # Define paths (adjust for your installation and file locations)
 PATH_WKHTMLTOPDF = r'.\\wkhtmltox\\bin\\wkhtmltopdf.exe' # Use a raw string for path
@@ -51,6 +51,16 @@ month_name = month_names[month]
 # Format the date as "dd de mmmm de aaaa"
 formatted_date = f"{day} de {month_name} de {year}"
 
+# #read informe-model.html content with utf-8 encoding
+file = open('informe-model-from-image.html', 'r', encoding='utf-8')
+html_content_template = file.read()
+file.close()
+
+html_content_template = html_content_template.replace('{{DATA}}', formatted_date)
+html_content_template = html_content_template.replace('{{CNPJ_FONTE_PAGADORA}}', os.getenv('CNPJ_FONTE_PAGADORA'))
+html_content_template = html_content_template.replace('{{NOME_FONTE_PAGADORA}}', os.getenv('NOME_FONTE_PAGADORA'))
+html_content_template = html_content_template.replace('{{NOME_RESPOSAVEL_INFORMACOES}}', os.getenv('NOME_RESPOSAVEL_INFORMACOES'))
+
 # read csv file with utf-8 encoding
 with open('dados.csv', 'r', encoding='utf-8') as csvfile:
     csv_data = list(csv.DictReader(csvfile, delimiter=';'))
@@ -67,7 +77,7 @@ for row in tqdm(csv_data, desc='Processing CSV records', unit='record'):
         cpf = row['cpf']
         formatted_cpf = f"{cpf[:3]}.{cpf[3:6]}.{cpf[6:9]}-{cpf[9:]}"
         valor = row['valor']
-        valor = valor.replace(",", ".") # Replace comma with dot for float conversion
+        valor = valor.lstrip().replace(".", "").replace(",", ".") # Replace comma with dot for float conversion
         #get valor and format it as R$ 0.000,00
         valor = f"R$ {float(valor):,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
                 
@@ -76,8 +86,6 @@ for row in tqdm(csv_data, desc='Processing CSV records', unit='record'):
         html_content = html_content_template.replace('{{NOME}}', nome)
         html_content = html_content.replace('{{CPF}}', formatted_cpf)
         html_content = html_content.replace('{{VALOR}}', valor)
-        html_content = html_content.replace('{{DATA}}', formatted_date)
-
         # Convert from an HTML file
         # pdfkit.from_file('index.html', 'output_file.pdf')
         pdfkit.from_string(html_content, f'./pdfs/{nome_without_accents}.pdf', configuration=config, options=options)
