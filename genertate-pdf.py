@@ -8,9 +8,13 @@ from datetime import datetime
 import csv
 from tqdm import tqdm
 from dotenv import load_dotenv
+from pathlib import Path 
 
 # Load .env file
 load_dotenv()
+
+PDF_OUTPUT_DIR = os.getenv('PDF_OUTPUT_DIR')
+Path(PDF_OUTPUT_DIR).mkdir(parents=True, exist_ok=True)
 
 # Define paths (adjust for your installation and file locations)
 PATH_WKHTMLTOPDF = r'.\\wkhtmltox\\bin\\wkhtmltopdf.exe' # Use a raw string for path
@@ -65,4 +69,4 @@ for row in tqdm(csv_data, desc='Processing CSV records', unit='record'):
         html_content = html_content.replace('{{VALOR}}', valor)
         # Convert from an HTML file
         # pdfkit.from_file('index.html', 'output_file.pdf')
-        pdfkit.from_string(html_content, f'./pdfs/{nome_without_accents}.pdf', configuration=config, options=options)
+        pdfkit.from_string(html_content, f'{PDF_OUTPUT_DIR}/{nome_without_accents}.pdf', configuration=config, options=options)
