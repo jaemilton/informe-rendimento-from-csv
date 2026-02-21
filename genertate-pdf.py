@@ -3,6 +3,8 @@
 import pdfkit
 import unidecode
 from datetime import datetime
+import csv
+from tqdm import tqdm
 
 # #read informe-model.html content with utf-8 encoding
 file = open('informe-model-from-image.html', 'r', encoding='utf-8')
@@ -50,10 +52,11 @@ month_name = month_names[month]
 formatted_date = f"{day} de {month_name} de {year}"
 
 # read csv file with utf-8 encoding
-import csv
 with open('dados.csv', 'r', encoding='utf-8') as csvfile:
-    reader = csv.DictReader(csvfile, delimiter=';')
-    for row in reader:
+    csv_data = list(csv.DictReader(csvfile, delimiter=';'))
+    total_rows = len(csv_data)
+    
+for row in tqdm(csv_data, desc='Processing CSV records', unit='record'):
         nome = row['nome']
         #get nome and format it as uppercase
         nome = nome.upper()
@@ -77,4 +80,4 @@ with open('dados.csv', 'r', encoding='utf-8') as csvfile:
 
         # Convert from an HTML file
         # pdfkit.from_file('index.html', 'output_file.pdf')
-        pdfkit.from_string(html_content, f'{nome_without_accents}.pdf', configuration=config, options=options)
+        pdfkit.from_string(html_content, f'./pdfs/{nome_without_accents}.pdf', configuration=config, options=options)
