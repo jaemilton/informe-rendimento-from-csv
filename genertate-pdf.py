@@ -42,7 +42,6 @@ html_content_template = html_content_template.replace('{{ANO_CALENDARIO}}', os.g
 # read csv file with utf-8 encoding
 with open('dados.csv', 'r', encoding='utf-8') as csvfile:
     csv_data = list(csv.DictReader(csvfile, delimiter=';'))
-    total_rows = len(csv_data)
     
 for row in tqdm(csv_data, desc='Processing CSV records', unit='record'):
         nome = row['nome']
