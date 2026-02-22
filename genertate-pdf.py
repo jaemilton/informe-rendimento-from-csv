@@ -46,7 +46,7 @@ html_content_template = html_content_template.replace('{{ANO_CALENDARIO}}', os.g
 with open('dados.csv', 'r', encoding='utf-8') as csvfile:
     csv_data = list(csv.DictReader(csvfile, delimiter=';'))
     
-for row in tqdm(csv_data, desc='Processing CSV records', unit='record'):
+for row in tqdm(csv_data, desc='Gerando PDFs a partir do CSV', unit='record'):
         nome = row['nome']
         #get nome and format it as uppercase
         nome = nome.upper()
