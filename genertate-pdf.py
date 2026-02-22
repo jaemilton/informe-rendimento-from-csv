@@ -62,14 +62,15 @@ for row in tqdm(csv_data, desc='Processing CSV records', unit='record'):
         valor = f"R$ {float(valor):,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
         
         nome_rendimento_isentos_e_nao_tributaveis_outros_no_csv = None if (row['nome_rendimento'] is None or row['nome_rendimento'].lstrip() == '') else row['nome_rendimento'].lstrip()
-        nome_rendimento_isentos_e_nao_tributaveis_outros = row['nome_rendimento'].lstrip() if row['nome_rendimento'] else nome_padrao_rendimento_isentos_e_nao_tributaveis_outros
-        html_content_template = html_content_template.replace('{{NOME_RENDIMENTO_ISENTOS_E_NAO_TRIBUTAVEIS_OUTROS}}', nome_rendimento_isentos_e_nao_tributaveis_outros)
+        nome_rendimento_isentos_e_nao_tributaveis_outros = nome_rendimento_isentos_e_nao_tributaveis_outros_no_csv if nome_rendimento_isentos_e_nao_tributaveis_outros_no_csv else nome_padrao_rendimento_isentos_e_nao_tributaveis_outros
+        
                 
 
         # Replace placeholders in the HTML template with actual values
         html_content = html_content_template.replace('{{NOME}}', nome)
         html_content = html_content.replace('{{CPF}}', formatted_cpf)
         html_content = html_content.replace('{{VALOR}}', valor)
+        html_content = html_content.replace('{{NOME_RENDIMENTO_ISENTOS_E_NAO_TRIBUTAVEIS_OUTROS}}', nome_rendimento_isentos_e_nao_tributaveis_outros)
         # Convert from an HTML file
         # pdfkit.from_file('index.html', 'output_file.pdf')
         pdfkit.from_string(html_content, f'{PDF_OUTPUT_DIR}/{nome_without_accents}.pdf', configuration=config, options=options)
