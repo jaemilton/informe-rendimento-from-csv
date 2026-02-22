@@ -4,7 +4,6 @@ import os
 
 import pdfkit
 import unidecode
-from datetime import datetime
 import csv
 from tqdm import tqdm
 from dotenv import load_dotenv
@@ -29,12 +28,12 @@ options = {
     'enable-local-file-access': True # Needed for local CSS/images if using from_string or from_file
 }
 
-
-
 # #read informe-model.html content with utf-8 encoding
 file = open('informe-model-from-image.html', 'r', encoding='utf-8')
 html_content_template = file.read()
 file.close()
+
+nome_padrao_rendimento_isentos_e_nao_tributaveis_outros = os.getenv('NOME_PADRAO_RENDIMENTO_ISENTOS_E_NAO_TRIBUTAVEIS_OUTROS')
 
 html_content_template = html_content_template.replace('{{DATA}}', os.getenv('DATA_INFOME'))
 html_content_template = html_content_template.replace('{{CNPJ_FONTE_PAGADORA}}', os.getenv('CNPJ_FONTE_PAGADORA'))
@@ -61,6 +60,10 @@ for row in tqdm(csv_data, desc='Processing CSV records', unit='record'):
         valor = valor.lstrip().replace(".", "").replace(",", ".") # Replace comma with dot for float conversion
         #get valor and format it as R$ 0.000,00
         valor = f"R$ {float(valor):,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
+        
+        nome_rendimento_isentos_e_nao_tributaveis_outros_no_csv = None if (row['nome_rendimento'] is None or row['nome_rendimento'].lstrip() == '') else row['nome_rendimento'].lstrip()
+        nome_rendimento_isentos_e_nao_tributaveis_outros = row['nome_rendimento'].lstrip() if row['nome_rendimento'] else nome_padrao_rendimento_isentos_e_nao_tributaveis_outros
+        html_content_template = html_content_template.replace('{{NOME_RENDIMENTO_ISENTOS_E_NAO_TRIBUTAVEIS_OUTROS}}', nome_rendimento_isentos_e_nao_tributaveis_outros)
                 
 
         # Replace placeholders in the HTML template with actual values
